@@ -1,0 +1,10 @@
+# Scalable @file completion: replaces the built-in local provider (which caps
+# its index at 50k entries) with a git-indexed provider so very large repos
+# stay fully searchable. The built-in row is disabled rather than deleted so a
+# later overlay can still re-enable it by id.
+- id: file-reference-local
+  disabled: true
+
+- insert:
+    - id: file-reference-git
+      name: 'dsh-file-reference-git'
