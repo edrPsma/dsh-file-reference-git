@@ -22,21 +22,8 @@ This plugin swaps the index source for `git ls-files`, which returns **all** tra
 
 ## Install
 
-### Option 1: npm (recommended)
-
 ```sh
 dsh plugin add dsh-file-reference-git
-```
-
-### Option 2: Web UI
-
-**Plugins → Add plugin → choose a local directory or tarball**.
-
-### Option 3: CLI (local build)
-
-```sh
-dsh plugin add ./dsh-file-reference-git            # local directory
-dsh plugin add ./dsh-file-reference-git-1.0.0.tgz  # tarball
 ```
 
 Restart DSH afterwards. The plugin disables the built-in `file-reference-local` and mounts itself through its own `cordis.patch.yml` — no manual config needed.

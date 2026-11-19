@@ -22,21 +22,8 @@ DSH 内置的 `@file` 补全（`dsh-file-reference-local`）用目录遍历建�
 
 ## 安装
 
-### 方式一：npm（推荐）
-
 ```sh
 dsh plugin add dsh-file-reference-git
-```
-
-### 方式二：Web 界面
-
-**插件 → 添加插件 → 选择本地目录或 tar 包**。
-
-### 方式三：命令行（本地构建）
-
-```sh
-dsh plugin add ./dsh-file-reference-git            # 本地目录
-dsh plugin add ./dsh-file-reference-git-1.0.0.tgz  # tar 包
 ```
 
 安装后**重启 DSH** 生效。插件通过自己的 `cordis.patch.yml` 禁用内置的 `file-reference-local` 并挂载自身，无需手动改配置。
