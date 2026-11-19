@@ -22,11 +22,17 @@ This plugin swaps the index source for `git ls-files`, which returns **all** tra
 
 ## Install
 
-### Option 1: Web UI
+### Option 1: npm (recommended)
+
+```sh
+dsh plugin add dsh-file-reference-git
+```
+
+### Option 2: Web UI
 
 **Plugins → Add plugin → choose a local directory or tarball**.
 
-### Option 2: CLI
+### Option 3: CLI (local build)
 
 ```sh
 dsh plugin add ./dsh-file-reference-git            # local directory
