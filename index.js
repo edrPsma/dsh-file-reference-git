@@ -12,8 +12,15 @@ export const inject = ['workingDirectory', 'agents']
  * the Cordis `ctx` surface only (provide/get/on/effect/inject) so it needs no
  * host-only `@deepseek-ai/*` import, which a profile bundle cannot resolve.
  */
-export function apply(ctx) {
-  const config = { maxResults: 50, maxEntries: 500000, excludedDirectories: DEFAULT_EXCLUDED }
+export function apply(ctx, config = {}) {
+  // Merge user config over the defaults. Kept dependency-free so a profile
+  // bundle can load without resolving host-only @deepseek-ai/* packages.
+  const maxResults = Number.isSafeInteger(config.maxResults) && config.maxResults > 0 ? config.maxResults : 50
+  const maxEntries = Number.isSafeInteger(config.maxEntries) && config.maxEntries > 0 ? config.maxEntries : 500000
+  const excludedDirectories = Array.isArray(config.excludedDirectories)
+    ? config.excludedDirectories.map(String)
+    : DEFAULT_EXCLUDED
+  const resolved = { maxResults, maxEntries, excludedDirectories }
   const searches = new Map() // agent -> { cwd, index }
   const promptFibers = new Map() // agent -> fiber
 
@@ -22,7 +29,7 @@ export function apply(ctx) {
     let cached = searches.get(agent)
     if (cached?.cwd !== cwd) {
       cached?.index.dispose()
-      cached = { cwd, index: new WorkspaceIndex(cwd, config) }
+      cached = { cwd, index: new WorkspaceIndex(cwd, resolved) }
       searches.set(agent, cached)
     }
     return cached.index
