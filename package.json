@@ -1,6 +1,6 @@
 {
   "name": "dsh-file-reference-git",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scalable @file completion for DSH: indexes the whole workspace via `git ls-files`, so large repos (100k+ files) stay searchable and .gitignore is respected. Replaces the built-in local provider.",
   "type": "module",
   "main": "index.js",
